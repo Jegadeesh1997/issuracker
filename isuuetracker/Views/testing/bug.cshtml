@@ -1,0 +1,67 @@
+﻿@model isuuetracker.Models.Modelclass
+@{
+    ViewBag.Title = "bug";
+}
+<style>
+    form {
+        background-color:lightgrey;
+    }
+    
+    select {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        border-radius:4px;
+    }
+    input {
+        padding: 5px;
+        outline: none;
+        border-radius: 4px;
+    }
+
+    option {
+        
+        border: none;
+        color:black;
+        background-color: white;
+        
+    }
+        option:hover {
+            background-color: lightcyan;
+        }
+    textarea {
+        border-radius: 4px;
+        width:200px;
+    }
+    #sub {
+        border: none;
+        background-color: lightskyblue;
+        font-weight: 600;
+    }
+    span{
+        font-weight:600;
+    }
+</style>
+<div id="tab">
+
+    @using (Html.BeginForm("bug", "testing", FormMethod.Post))
+    {
+        <table align="center" cellpadding="20" >
+            <tr><td><span>Project name </span></td><td>:</td><td>@Html.DropDownListFor(m => m.projid, Model.projectlist)</td></tr>
+
+            <tr><td><span>Bug Name </span></td><td>:</td><td>@Html.TextBoxFor(m => m.bugname, new { required = "required" })</td></tr>
+
+            <tr><td><span>Bug Type </span></td><td>:</td><td>@Html.DropDownListFor(m => m.bugtype, (SelectListItem[])ViewBag.list)</td></tr>
+
+            <tr><td><span>Comments </span></td><td>:</td><td>@Html.TextAreaFor(m => m.comments, new { required = "required" })</td></tr>
+
+            <tr><td><input type="submit" value="Submit" id="sub"/></td></tr>
+        </table>
+
+    }
+</div>
+
+

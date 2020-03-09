@@ -1,0 +1,77 @@
+﻿
+@model isuuetracker.Models.Modelclass
+@{
+    ViewBag.Title = "devresult";
+    Layout = "";
+}
+
+<style type="text/css">
+    .l {
+        padding: 10px;
+        position: absolute;
+        top: 25%;
+        left: 40%;
+        width: auto;
+        height: auto;
+        text-align: center;
+        background-color: white;
+        border-radius: 5px;
+    }
+
+    span {
+        font-weight: 600;
+    }
+
+    textarea {
+        border-radius: 4px;
+        width: 200px;
+    }
+</style>
+<div class="l">
+    <div>
+        <button type="button" class="close " data-dismiss="modal"><span>&times;&nbsp;</span></button>
+        <h4 class="text-primary">Assign To Developer</h4>
+    </div>
+    <hr />
+    @using (Html.BeginForm("open", "testing", FormMethod.Post))
+    {
+        <table cellpadding="8">
+
+
+            <tr>
+                <td>
+                    <span>Comments </span>
+                </td>
+                <td>
+                    :
+                </td>
+                <td>
+                    @Html.TextAreaFor(m => m.comments, new { required = "Required" })
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td align="right">
+                    <input type="submit" class="btn btn-primary" id="sub" value="Submit" />
+                </td>
+            </tr>
+        </table>
+
+
+        <input type="hidden" value="@ViewBag.bid" name="bid">
+
+    }
+
+    <hr />
+    <p class="text-warning">*Resolved problem informed to tester</p>
+</div>
+
+
+
+
+
+
+
+
+

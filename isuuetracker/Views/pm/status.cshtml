@@ -1,0 +1,60 @@
+﻿@model List<isuuetracker.Models.Modelclass>
+@{
+    ViewBag.Title = "status";
+}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">UserName</th>
+            <th scope="col">Role</th>
+            <th scope="col">status</th>
+            <th scope="col">Comment</th>
+            <th scope="col">Time</th>
+           
+        </tr>
+    </thead>
+    @foreach (var i in Model)
+    {
+
+        <tr scope="row">
+            <td>
+                @i.username
+            </td>
+            <td>
+                @i.job
+            </td>
+            <td>
+                @if (i.status == "Closed")
+                {
+                    <p class="text-success">@i.status</p>
+                }
+                @if (i.status == "Open")
+                {
+                    <p class="text-danger">@i.status</p>
+                }
+                @if (i.status == "Assigned")
+                {
+                    <p class="text-warning">@i.status</p>
+                }
+                @if (i.status == "Resolved")
+                {
+                    <p class="text-success">@i.status</p>
+                }
+
+            </td>
+            <td>
+                @i.comments
+            </td>
+            <td>
+                @i.time
+            </td>
+            
+
+        </tr>
+
+
+    }
+</table>
+
+
+

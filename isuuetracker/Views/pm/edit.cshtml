@@ -1,0 +1,104 @@
+﻿@model isuuetracker.Models.Modelclass
+@{
+    ViewBag.Title = "edit";
+    Layout = "";
+}
+<style type="text/css">
+    option {
+        border: none;
+        color: black;
+        background-color: white;
+        width: 200px;
+    }
+    textarea {
+        border-radius: 4px;
+        width: 200px;
+    }
+    #sub {
+        border: none;
+        background-color: lightskyblue;
+        font-weight: 600;
+        
+        
+    }
+    span {
+        font-weight: 600;
+    }
+    .l {
+        padding:10px;
+        position: absolute;
+        top: 25%;
+        left: 40%;
+        width: auto;
+        height: auto;
+        text-align: center;
+        background-color: white;
+        border-radius: 5px;
+    }
+    select {
+        background-color: lightblue;
+        color: white;
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+        width:200px;
+    }
+</style>
+
+<div class="l">
+    <div>
+        <button type="button" class="close " data-dismiss="modal"><span>&times;&nbsp;</span></button>
+        <h4 class="text-primary">Assign To Developer</h4>
+    </div>
+    <hr />
+   @using (Html.BeginForm("edit", "pm", FormMethod.Post))
+   {
+      <table cellpadding="8">
+          <tr>
+              <td>
+                  <span>Developer</span>
+              </td>
+              <td>
+                 :
+              </td>
+              <td>
+                  @Html.DropDownListFor(m => m.devid, Model.dev , new { @class="btn-info"})
+              </td>
+          </tr>
+          <tr>
+              <td>
+                  <span>Comments </span>
+              </td>
+              <td>
+                  :
+              </td>
+              <td>
+                 @Html.TextAreaFor(m => m.comments, new { required = "Required" })
+              </td>
+          </tr>
+          <tr>
+              <td>
+                  
+              </td>
+              <td>
+                  
+              </td>
+              <td align="right">
+                  <input type="submit"   class="btn btn-primary" id="sub" value="Submit" />
+              </td>
+          </tr>
+      </table>
+   
+   
+    <input type="hidden" value="@ViewBag.bid" name="bid">
+   
+   }
+
+    <hr />
+    <p class="text-warning">*Assign this to concern Developer</p>
+</div>
+
+
+

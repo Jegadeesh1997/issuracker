@@ -1,0 +1,97 @@
+﻿@model List<isuuetracker.Models.Modelclass>
+
+@{
+    ViewBag.Title = "dashboard";
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Bug ID</th>
+            <th scope="col">Bug Name</th>
+            <th scope="col">Bug Type</th>
+            <th scope="col">Project Name</th>
+            <th scope="col">Status</th>
+
+    <th scope="col">Assign</th>
+
+
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    @foreach (var i in Model)
+    {
+
+        <tr scope="row">
+            <td>
+               @i.bugid
+            </td>
+            <td>
+                @i.bugname
+            </td>
+            <td>
+                @i.bugtype
+            </td>
+            <td>
+                @i.projid
+            </td>
+            <td>
+                @if(i.status=="Closed")
+                {
+                <p class="text-success">@i.status</p>
+                }
+               @if (i.status == "Open")
+               {
+                <p class="text-danger">@i.status</p>
+               }
+                @if (i.status == "Assigned")
+                {
+                    <p class="text-warning">@i.status</p>
+                }
+                @if (i.status == "Resolved")
+                {
+                    <p class="text-success">@i.status</p>
+                }
+
+
+               
+            </td>
+            <td>
+
+                @if (i.status == "Open" && i.job == "PM")
+                {
+                    
+
+                    <a  class=" btn btn-warning" href="/pm/edit?pid=@i.projid&bid=@i.bugid" data-toggle="modal" data-target=".boot" >assign</a>
+
+                }
+                @if (i.status == "Assigned" && i.job == "DEV")
+                {
+                    <a class=" btn btn-primary"  href="/dev/devresult?pid=@i.projid&bid=@i.bugid" data-toggle="modal" data-target=".boot">Resolve</a>
+                  
+
+                }
+                @if (i.status == "Resolved" && i.job == "TESTER")
+                {
+                    <a class=" btn btn-success" href="/testing/close?pid=@i.projid&bid=@i.bugid" data-toggle="modal" data-target=".boot">Resolved</a>
+                    <a class=" btn btn-danger" href="/testing/open?pid=@i.projid&bid=@i.bugid" data-toggle="modal" data-target=".boot">Not Resolved</a>
+
+
+                }
+
+            </td>
+
+            <td>
+               <a class="btn btn-info" href="/pm/status?bid=@i.bugid"><span class="glyphicon glyphicon-calendar" ></span>History</a>
+            </td>
+           
+        </tr>
+
+
+    }
+</table>
+<div  class="modal fade boot" role="dialog">
+    <div class="modal-dialog">
+
+       </div>
+</div>
